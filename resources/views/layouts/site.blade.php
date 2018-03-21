@@ -56,7 +56,7 @@
 
 <div class="container ">
 
-    @yield('slider')
+
 
     @yield('content')
 
