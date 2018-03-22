@@ -13,3 +13,8 @@
 
 
 Route::get('/',['uses'=>'PageController@index','as'=>'page']);
+Route::get('/{category}',['uses'=>'PageController@category','as'=>'category']);
+Route::get('/{category}/{id}',['uses'=>'PageController@news','as'=>'news']);
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
