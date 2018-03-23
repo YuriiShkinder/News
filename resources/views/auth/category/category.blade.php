@@ -4,10 +4,26 @@
 
     <div class="container">
 
+        @if(session('status'))
+            <div class="alert alert-success">
+                {{session('status')}}
+            </div>
+        @endif
+        @if(count($errors)>0)
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+
+        @endif
         <a  class="btn btn-primary send">Add category</a>
         <form style="display: none" class="add_form" action="{{route('admin_category')}}" method="post">
             <div style="margin-top: 10px" class="row col-lg-4 input-group">
-            <input style="margin-right: 10px" class="form-control" type="text" placeholder="category name">
+                {{ csrf_field() }}
+            <input style="margin-right: 10px" class="form-control" type="text" name="categorys" placeholder="category name">
             <input  type="submit" class="btn btn-primary" value="Send">
             </div>
         </form>
@@ -29,12 +45,13 @@
                         @foreach($data as $item)
                             <tr>
                                 <td>{{$item->id}}</td>
-                                <td>
-                                    <a class="btn btn-info send">{{$item->categorys}}</a>
+                                <td class="text-center">
+                                    <a style="width: 75%" class="btn btn-info send">{{$item->categorys}}</a>
                                     <form style="display: none" class="add_form" action="{{route('admin_category',['id'=>$item->id])}}" method="post">
                                         <div style="margin-top: 10px" >
-                                            <input style="margin-bottom: 10px" class="form-control" type="text" value="{{$item->categorys}}">
-                                            <input  type="submit" class="btn btn-primary" value="Send">
+                                            {{ csrf_field() }}
+                                            <input style="margin-bottom: 10px; " class="form-control" type="text" name="categorys" value="{{$item->categorys}}">
+                                            <input   type="submit" class="btn btn-primary" value="Send">
                                         </div>
                                     </form>
                                 </td>
@@ -42,7 +59,8 @@
                                 <td class="text-center">
                                 <form action="{{route('admin_category',['id'=>$item->id])}}" method="post">
                                     {{method_field('DELETE')}}
-                                    <button type="button" class="btn btn-warning">Delete</button>
+                                    {{ csrf_field() }}
+                                    <button type="submit" class="btn btn-warning">Delete</button>
                                 </form>
                                 </td>
                             </tr>
