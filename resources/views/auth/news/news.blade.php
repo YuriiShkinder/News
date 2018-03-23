@@ -31,7 +31,7 @@
 
         <div style="margin-top: 50px" class="row justify-content-center">
             <div class="col-lg-12 ">
-                <table class="table table-bordered">
+                <table  class="table table-bordered">
                     <thead>
                     <tr>
                         <th>id</th>
@@ -39,7 +39,6 @@
                         <th>Category</th>
 
                         <th >text</th>
-                        <th>fulltext</th>
                         <th>tags</th>
                         <th>images</th>
                         <th>reads</th>
@@ -53,22 +52,21 @@
                     @if(isset($data))
                         @foreach($data as $item)
 
-                            <tr>
+                            <tr >
                                 <td>{{$item->id}}</td>
                                 <td>{{$item->title}}</td>
                                 <td> {{$item->category->categorys}}</td>
                                 <td>{{ $item->text }}</td>
-                                <td style=" overflow: auto">{{ $item->full_text }}</td>
+
                                 <td>
                                     @if(count($item->tags)>0)
 
                                         @foreach($item->tags as $tags)
-
                                             <span>#{{$tags->tags}}</span>
                                         @endforeach
 
                                         @else
-                                            <span>----</span>
+                                            <span>no tags</span>
                                         @endif
 
                                 </td>
