@@ -19,15 +19,7 @@
             </div>
 
         @endif
-        <a  class="btn btn-primary send">Add blurds</a>
-        <form style="display: none" class="add_form" action="{{route('admin_blurds')}}" method="post">
-            <div style="margin-top: 10px" class="row col-lg-4 input-group">
-                {{ csrf_field() }}
-                <input style="margin-right: 10px" class="form-control" type="text" name="categorys" placeholder="category name">
-                <input  type="submit" class="btn btn-primary" value="Send">
-            </div>
-        </form>
-
+        <a href="{{route('admin_blurds_add')}}" class="btn btn-primary send">Add blurds</a>
 
         <div style="margin-top: 50px" class="row justify-content-center">
             <div class="col-lg-12 ">
@@ -47,14 +39,14 @@
                         @foreach($data as $item)
 
                             <tr >
-                                <td><a>{{$item->id}}</td>
-                                <td>{{$item->title}}</td>
+                                <td>{{$item->id}}</td>
+                                <td><a href="{{ route('admin_blurds_edit',['blurd'=>$item->id]) }}">{{$item->title}}</a></td>
                                 <td> {{$item->price}}</td>
                                 <td>{{ $item->firm }}</td>
 
 
                                 <td class="text-center">
-                                    <form action="{{route('admin_blurds',['id'=>$item->id])}}" method="post">
+                                    <form action="{{route('admin_blurds',['blurd'=>$item->id])}}" method="post">
                                         {{method_field('DELETE')}}
                                         {{ csrf_field() }}
                                         <button type="submit" class="btn btn-warning">Delete</button>
@@ -64,8 +56,6 @@
                         @endforeach
                     @endif
 
-
-
                     </tbody>
                 </table>
 
@@ -73,20 +63,5 @@
         </div>
 
     </div>
-    <script>
-        $(document).ready(function() {
-            $('.send').click(function () {
-                var name=$(this).text();
-                console.log($(this).text());
-                $(this).text('News name category');
-                $(this).siblings('.add_form').slideToggle();
-                $(this).click(function () {
-                    $(this).text(name);
-                })
-            })
-        })
-
-    </script>
-
 
 @endsection

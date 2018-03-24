@@ -36,8 +36,12 @@ Route::group(['prefix'=>'admin','middleware'=>'auth'],function () {
         Route::match(['get','post'],'/add/new',['uses'=>'Auth\AuthController@newsAdd','as'=>'admin_news_add']);
 
     });
+    Route::group(['prefix'=>'blurds'],function (){
+        Route::get('/',['uses'=>'Auth\AuthController@blurds','as'=>'admin_blurds']);
+        Route::match(['get','post','delete'],'/{blurd}',['uses'=>'Auth\AuthController@blurdsEdit','as'=>'admin_blurds_edit']);
+        Route::match(['get','post'],'/add/blurd',['uses'=>'Auth\AuthController@blurdsAdd','as'=>'admin_blurds_add']);
+    });
 
-    Route::get('/blurds',['uses'=>'Auth\AuthController@blurds','as'=>'admin_blurds']);
 
 });
 
