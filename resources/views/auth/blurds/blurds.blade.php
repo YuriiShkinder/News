@@ -47,7 +47,7 @@
                         @foreach($data as $item)
 
                             <tr >
-                                <td>{{$item->id}}</td>
+                                <td><a>{{$item->id}}</td>
                                 <td>{{$item->title}}</td>
                                 <td> {{$item->price}}</td>
                                 <td>{{ $item->firm }}</td>
