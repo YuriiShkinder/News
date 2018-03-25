@@ -1,3 +1,5 @@
+
+
 <div class="row" style="
 margin: 50px 0;
 ">
@@ -55,6 +57,23 @@ margin: 50px 0;
 </div>
 
 
+<h3 style="text-align: center">Top-3 commentator</h3>
+<div class="row">
+
+    <div class="col-lg-4">1</div>
+    <div class="col-lg-4">2</div>
+    <div class="col-lg-4">3</div>
+</div>
+
+
+<h3 style="text-align: center">Top-3 themes</h3>
+<div class="row">
+
+    <div class="col-lg-4">1</div>
+    <div class="col-lg-4">2</div>
+    <div class="col-lg-4">3</div>
+</div>
+
 <div class='row'>
     <div class="col-lg-12">
         <h3 class="text-center">News category</h3>
@@ -93,11 +112,6 @@ margin: 50px 0;
                                         @if($val['id']>0)
                                             <div class="cat_news">
                                                 <a class="" href="{{route('news',['category'=>$category,'id'=>$val['id']])}}">{{$val['title']}}</a>
-                                                <span><i class="fa fa-anchor"></i>{{$val['count']}}</span>
-                                                <div class="float-right">
-                                                <span><i class="fa fa-thumbs-o-down"></i>{{$val['dislike']}}</span>
-                                                <span><i class="fa fa-thumbs-o-up"></i>{{$val['like']}}</span>
-                                                </div>
                                             </div>
 
                                         @else

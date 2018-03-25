@@ -19,7 +19,6 @@
 
                                        <div class="row">
                                            <div class="col-lg-2">
-                                               <span><i class="fa fa-anchor"></i>{{$val['count']}}</span>
                                            </div>
                                            <div class="col-lg-7 text-center">
                                                 @if(isset($val['tags']))
@@ -29,8 +28,7 @@
                                                     @endif
                                            </div>
                                            <div class="col-lg-3">
-                                               <span><i class="fa fa-thumbs-o-down"></i>{{$val['dislike']}}</span>
-                                               <span><i class="fa fa-thumbs-o-up"></i>{{$val['like']}}</span>
+
                                            </div>
 
                                        </div>

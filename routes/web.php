@@ -12,14 +12,15 @@
 */
 
 
-Route::group([],function (){
 
     Route::get('/',['uses'=>'PageController@index','as'=>'page']);
     Route::get('/page/{category}',['uses'=>'PageController@category','as'=>'category']);
     Route::get('/page/{category}/{id}',['uses'=>'PageController@news','as'=>'news']);
+    Route::post('/page/add/coment',['uses'=>'PageController@coment','as'=>'coment']);
 
 
-});
+
+Route::get('/tag/search/{tag}',['uses'=>'PageController@tags','as'=>'tags']);
 
 Auth::routes();
 
@@ -43,6 +44,13 @@ Route::group(['prefix'=>'admin','middleware'=>'auth'],function () {
     });
 
     Route::match(['get','post'],'/styles',['uses'=>'Auth\AuthController@styles','as'=>'admin_styles']);
+
+});
+
+Route::group(['prefix'=>'ajax'],function (){
+
+    Route::post('/like',['uses'=>'AjaxController@like']);
+    Route::post('/reads',['uses'=>'AjaxController@reads']);
 
 });
 
