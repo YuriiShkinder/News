@@ -29,7 +29,6 @@
                         <th>id</th>
                         <th>title</th>
                         <th>Category</th>
-
                         <th >text</th>
                         <th>tags</th>
                         <th>images</th>

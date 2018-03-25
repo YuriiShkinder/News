@@ -1,7 +1,7 @@
 
 <div class="row">
-    <div class="col-lg-2"></div>
-    <div class="col-lg-8">
+    <div class="col-lg-1"></div>
+    <div class="col-lg-10">
         <div class='row'>
             <div class="col-lg-12">
 
@@ -12,8 +12,6 @@
                                     <h4>{{$val['title']}}</h4>
                                     <img src="{{$val['images']}}" alt="{{$val['title']}}">
                                     <p>{{$val['fulltext']}} ....</p>
-
-
 
                                     <div class="row">
                                         <div class="col-lg-2">
@@ -33,28 +31,35 @@
                                     </div>
 
                                 </div>
-                                <a class="" href="{{route('category',['category'=>$category])}}">Back</a>
+                                {{--<a class="" href="{{route('category',['category'=>$category])}}">Back</a>--}}
                             @endforeach
+                            @if($coments)
+
+                            <div class="coments">
+                                <div class="row justify-content-center">
+                                    <div class="col-lg-12">
+                                        @foreach($coments as $coment)
+                                            <div class="coment">
+                                                <h5>{{$coment->user->name}}</h5>
+                                                <p>{{$coment->text}}</p>
+
+                                            </div>
+
+                                            @endforeach
+
+                                    </div>
+                                </div>
+
+                            </div>
+                                @endif
+
                         </div>
 
                 @endif
             </div>
         </div>
     </div>
-    <div class="col-lg-3">
-        @if(isset($blurds))
-            @for($i=1;$i<=count($blurds);$i+=2)
-                <div class="baner">
-                    <h6 class="text-center overflow">{{$blurds[$i]['title']}}</h6>
-                    <div class="price">
-                        <img class="baner_img" src="https://randomuser.me/api/portraits/women/{{ rand(5,100) }}.jpg">
-                        <p>{{$blurds[$i]['firm']}}</p>
-                        <p class="float-right">{{$blurds[$i]['price']}}$</p>
-                    </div>
-                </div>
-            @endfor
-        @endif
-    </div>
+    <div class="col-lg-1"> </div>
 </div>
         </div>
 

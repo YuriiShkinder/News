@@ -42,6 +42,7 @@ Route::group(['prefix'=>'admin','middleware'=>'auth'],function () {
         Route::match(['get','post'],'/add/blurd',['uses'=>'Auth\AuthController@blurdsAdd','as'=>'admin_blurds_add']);
     });
 
+    Route::match(['get','post'],'/styles',['uses'=>'Auth\AuthController@styles','as'=>'admin_styles']);
 
 });
 
