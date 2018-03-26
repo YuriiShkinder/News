@@ -6,6 +6,22 @@
             <div class="col-lg-12">
 
                 @if(isset($data))
+                    @if(session('status'))
+                        <div class="alert alert-success">
+                            {{session('status')}}
+                        </div>
+                    @endif
+                    @if(count($errors)>0)
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+
+                    @endif
+
                         <div class="category">
                             @foreach($data as $category=>$val)
                                 <div class="cat_news" news-id="{{$val['id']}}">
@@ -64,15 +80,33 @@
                                                 @else
                                                 <h5 style="text-align: center">Немає коментарів</h5>
                                             @endif
-                                            <form style="margin-top: 20px" action="{{route('coment')}}" method="post">
-                                                <div class="form-group">
-                                                <input class="form-control"  type="text" name="text" placeholder="coment">
-                                                    <input   type="hidden" name="user_id" value="{{Auth::user()->id}}">
-                                                    <input   type="hidden" name="new_id" value="{{array_shift($data)['id']}}">
-                                                </div>
-                                                {{ csrf_field() }}
-                                                <button  type="submit" class="btn btn-default ">Send</button>
-                                            </form>
+
+                                            @if(array_keys($data)[0]=='politics')
+                                                    <form style="margin-top: 20px" action="{{route('admin_coment')}}" method="post">
+                                                        <div class="form-group">
+                                                            <input class="form-control"  type="text" name="text" placeholder="coment">
+                                                            <input   type="hidden" name="user_id" value="{{Auth::user()->id}}">
+                                                            <input   type="hidden" name="new_id" value="{{array_shift($data)['id']}}">
+                                                        </div>
+                                                        {{ csrf_field() }}
+                                                        <button  type="submit" class="btn btn-default ">Send</button>
+                                                    </form>
+
+                                                @else
+                                                            <form style="margin-top: 20px" action="{{route('coment')}}" method="post">
+                                                                <div class="form-group">
+                                                                    <input class="form-control"  type="text" name="text" placeholder="coment">
+                                                                    <input   type="hidden" name="user_id" value="{{Auth::user()->id}}">
+                                                                    <input   type="hidden" name="new_id" value="{{array_shift($data)['id']}}">
+                                                                </div>
+                                                                {{ csrf_field() }}
+                                                                <button  type="submit" class="btn btn-default ">Send</button>
+                                                            </form>
+
+                                                @endif
+
+
+
                                         </div>
                                     @endguest
 

@@ -43,7 +43,8 @@ Route::group(['prefix'=>'admin','middleware'=>'auth'],function () {
     });
 
     Route::match(['get','post'],'/styles',['uses'=>'Auth\AuthController@styles','as'=>'admin_styles']);
-
+    Route::match(['get','post'],'/coment',['uses'=>'Auth\AuthController@coment','as'=>'admin_coment']);
+    Route::match(['post'],'/coment/Lock',['uses'=>'Auth\AuthController@comentLock','as'=>'admin_coment_lock']);
 });
 
 Route::group(['prefix'=>'ajax'],function (){

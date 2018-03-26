@@ -9,8 +9,12 @@
         <a href="{{ route('admin_news') }}" class="list-group-item">News</a>
         <a href="{{ route('admin_blurds') }}" class="list-group-item">Blurds</a>
     </div>
+
             <div style="margin-top: 30px" class="list-group">
                 <a href="{{ route('admin_styles') }}" class="list-group-item">Styles</a>
+            </div>
+            <div  class="list-group">
+                <a href="{{ route('admin_coment') }}" class="list-group-item">Coments category politic</a>
             </div>
 
         </div>
