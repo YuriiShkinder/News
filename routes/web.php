@@ -51,6 +51,8 @@ Route::group(['prefix'=>'ajax'],function (){
 
     Route::post('/like',['uses'=>'AjaxController@like']);
     Route::post('/reads',['uses'=>'AjaxController@reads']);
+    Route::post('/search',['uses'=>'AjaxController@search']);
+    Route::post('/respons/search',['uses'=>'AjaxController@responsAjax','as'=>'ajax_search']);
 
 });
 

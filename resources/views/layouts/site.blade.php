@@ -43,10 +43,15 @@
         <div class="collapse navbar-collapse " id="navbarResponsive">
             <ul style="float: right" class="navbar-nav ml-auto">
 
-                <form style="margin-right:50px " class="form-inline">
-                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                <form autocomplete="off" style="margin-right:50px "  action="{{route('ajax_search')}}"  method="post" class="form-inline">
+                    <input id="search" class="form-control mr-sm-2" name="tags" type="text" placeholder="Search #tag" value="" aria-label="Search">
+
+                    @csrf
+                    <input class="btn btn-outline-success my-2 my-sm-0" type="submit" value="Go">
                 </form>
+                <ul class="list" >
+
+                </ul>
 
                 @guest
                     <li><a class="nav-link" href="{{ route('login') }}">Login</a></li>
@@ -83,8 +88,6 @@
 
 <div class="container ">
 
-
-
     @yield('content')
 
 </div>
@@ -101,3 +104,54 @@
 <script src="{{ asset('assets/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 
 </html>
+
+<script>
+    var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+
+
+
+    $('#search').keydown(function () {
+        var str=$('#search').val();
+        if(str.length>=1){
+            $('.list').slideDown();
+            $.ajax({
+                url: '/ajax/search',
+                type: 'POST',
+                data:{
+                    _token: CSRF_TOKEN,
+                    str:str
+                },
+
+                success: function( msg ) {
+
+                    if(msg.length==0){
+                        $('.list').children().remove();
+                        $('.list').append('<li>No search</li>')
+                    }else{
+                        $('.list').children().remove();
+
+                            console.log(msg[0].tags);
+                            for(var i in msg){
+
+                               $('.list').append('<li class="test">'+msg[i].tags+'</li>')
+                            }
+
+                    }
+
+
+                }
+            })
+
+    }else {
+            $('.list').slideUp();
+        }
+    })
+
+       $('.list').on('click','.test',function () {
+
+            $('#search').val($(this).text())
+           $('.list').hide();
+       })
+
+
+</script>
