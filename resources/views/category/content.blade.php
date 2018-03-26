@@ -23,7 +23,7 @@
                                            <div class="col-lg-7 text-center">
                                                 @if(isset($val['tags']))
                                                     @foreach($val['tags'] as $value)
-                                                        <a style="display: inline-block; margin: 0 5px" href="/"> #{{$value}}</a>
+                                                        <a style="display: inline-block; margin: 0 5px" href="{{route('tags',['tag'=>$value])}}"> #{{$value}}</a>
                                                         @endforeach
                                                     @endif
                                            </div>

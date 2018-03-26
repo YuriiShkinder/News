@@ -58,20 +58,33 @@ margin: 50px 0;
 
 
 <h3 style="text-align: center">Top-3 commentator</h3>
-<div class="row">
+<div style="margin-top: 20px" class="row border justify-content-center ">
+@if(isset($users))
+    @foreach($users as $user)
+            <div class="col-lg-2 text-center">
+               <h1><a href="{{route('user',['user'=>$user->user_id])}}"> {{$user->user->name}}</a></h1>
+                <img style="border-radius: 10px" src="https://randomuser.me/api/portraits/women/{{rand(0,100)}}.jpg">
+               <h5 style="margin-top: 10px"> count coments:{{$user->count}}</h5>
+            </div>
+        @endforeach
+    @endif
 
-    <div class="col-lg-4">1</div>
-    <div class="col-lg-4">2</div>
-    <div class="col-lg-4">3</div>
 </div>
 
 
-<h3 style="text-align: center">Top-3 themes</h3>
-<div class="row">
+<h3 style="text-align: center; margin-top:50px ;">Top-3 themes</h3>
+<div  class="row border ">
+    @if(isset($thems))
+        @foreach($thems as $them)
 
-    <div class="col-lg-4">1</div>
-    <div class="col-lg-4">2</div>
-    <div class="col-lg-4">3</div>
+            <div class="col-lg-4 text-center">
+                <h1> <a href="{{route('news',['id'=>$them->new_id,'category'=>$them->new->category->categorys])}}">{{$them->new->title}}</a></h1>
+                <img style="border-radius: 10px ;height: 150px" src="{{$them->new->images}}">
+                <h5 style="margin-top: 10px"> count coments:{{$them->count}}</h5>
+            </div>
+        @endforeach
+    @endif
+
 </div>
 
 <div class='row'>
@@ -106,7 +119,11 @@ margin: 50px 0;
                         @if(isset($news))
                         @foreach($news as $category=>$new)
                             <div class="category">
-                                <h3><a href="{{route('category',[$category])}}">{{$category}}</a></h3>
+
+                                <h3 style="width: 90%; display: inline-block"><a href="{{route('category',[$category])}}">{{$category}}</a></h3>
+                                <span  class="glyphicon glyphicon-plus plus"></span>
+
+                                <div style="display: none" class="news_show">
                                 @foreach($new as $val)
 
                                         @if($val['id']>0)
@@ -119,6 +136,7 @@ margin: 50px 0;
                                         @endif
 
                                 @endforeach
+                                </div>
                             </div>
                             @endforeach
                             @endif
@@ -144,3 +162,26 @@ margin: 50px 0;
         @endif
     </div>
 </div>
+
+<script>
+
+    $('.plus').click(function () {
+
+
+        if($(this).hasClass('glyphicon-plus')){
+            $(this).removeClass('glyphicon-plus').addClass('glyphicon-minus');
+
+
+        }else {
+            $(this).removeClass('glyphicon-minus').addClass('glyphicon-plus');
+
+        }
+
+        $(this).siblings('.news_show').slideToggle();
+
+
+
+    })
+
+
+</script>

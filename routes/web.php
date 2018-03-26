@@ -18,9 +18,8 @@
     Route::get('/page/{category}/{id}',['uses'=>'PageController@news','as'=>'news']);
     Route::post('/page/add/coment',['uses'=>'PageController@coment','as'=>'coment']);
 
-
-
-Route::get('/tag/search/{tag}',['uses'=>'PageController@tags','as'=>'tags']);
+    Route::get('/tag/search/{tag}',['uses'=>'PageController@tags','as'=>'tags']);
+Route::get('/user/top/{user}',['uses'=>'PageController@user','as'=>'user']);
 
 Auth::routes();
 
